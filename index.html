@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nachbarschaftsfeier</title>
+</head>
+<body>
+    <h1>Nachbarschaftsfeier – Mitbringliste</h1>
+    
+    <form id="beitrag-form">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" required><br><br>
+
+        <label for="gericht">Was bringst du mit?</label><br>
+        <input type="text" id="gericht" required><br><br>
+
+        <label for="kommentar">Unverträglichkeiten oder Kommentare:</label><br>
+        <textarea id="kommentar"></textarea><br><br>
+
+        <button type="submit">Eintragen</button>
+    </form>
+
+    <h2>Liste der Beiträge</h2>
+    <ul id="liste"></ul>
+
+    <script>
+        const form = document.getElementById("beitrag-form");
+        const liste = document.getElementById("liste");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const gericht = document.getElementById("gericht").value;
+            const kommentar = document.getElementById("kommentar").value;
+
+            const li = document.createElement("li");
+            li.textContent = `${name} bringt mit: ${gericht}` + (kommentar ? ` (Kommentar: ${kommentar})` : "");
+
+            liste.appendChild(li);
+
+            form.reset();
+        });
+    </script>
+</body>
+</html>
